@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+    mongo:
+      image: mongo
+      command: --serviceExecutor adaptive
+    app:
+      build:
+        context: .
+        dockerfile: ./Dockerfile.dev
+      image: node-api
+      volumes:
+        - /usr/app/node_modules
+        - .:/usr/app
+      ports:
+          - 3000:3000
