@@ -3,6 +3,8 @@ version: "3.8"
 services:
   mongo:
     image: mongo
+    volumes:
+      - ./docker/docker-volumes-data/db:~/mongo/data
     command: --serviceExecutor adaptive
   mongo-express:
     image: mongo-express

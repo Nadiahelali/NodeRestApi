@@ -50,7 +50,8 @@ router.patch('/:postId', async (req, res) => {
     try {
         const updatedPost = await Post.updateOne(
             {_id: req.params.postId},
-            { $set: { title: req.body.title }}
+            { $set: { title: req.body.title ? req.body.title : post.title,
+                description: req.body.description ? req.body.description : post.description}}
         );
         res.json(updatedPost);
     } catch(err) {
