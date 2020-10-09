@@ -1,16 +1,25 @@
 version: "3.8"
 
 services:
-    mongo:
-      image: mongo
-      command: --serviceExecutor adaptive
-    app:
-      build:
-        context: .
-        dockerfile: ./Dockerfile.dev
-      image: node-api
-      volumes:
-        - /usr/app/node_modules
-        - .:/usr/app
-      ports:
-          - 3000:3000
+  mongo:
+    image: mongo
+    command: --serviceExecutor adaptive
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+  app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.dev
+    image: node-api
+    volumes:
+      - /usr/app/node_modules
+      - .:/usr/app
+    ports:
+        - 3000:3000
+    environment:
+      DB_CONNECT: mongodb://mongo:27017/posts
+    depends_on: 
+      - mongo

@@ -13,9 +13,13 @@ const postsRoute = require('./Routes/posts')
 
 app.use('/posts', postsRoute)
 
-mongoose.connect(process.env.DB_CONNECT, 
-{ useNewUrlParser: true },
-() => console.log('conected to DB'))
+mongoose.connect(process.env.DB_CONNECT, function(err) {
+    if (err) {
+        console.error(err);
+    } else {
+        console.log('Connected');
+    }    
+});
 
 app.get('/', (req, res) => {
     res.send('Hello World!')
