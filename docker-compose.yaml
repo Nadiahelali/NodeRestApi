@@ -4,7 +4,7 @@ services:
   mongo:
     image: mongo
     volumes:
-      - ./docker/docker-volumes-data/db:~/mongo/data
+      - ./docker/docker-volumes-data/db:/data/db
     command: --serviceExecutor adaptive
   mongo-express:
     image: mongo-express
