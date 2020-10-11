@@ -9,7 +9,7 @@ stop:
 	docker container stop app mongo-express mongo
 destroy: stop
 	docker network rm restless-api;
-	// # docker container rm app mongo-express mongo;
+	docker container rm app mongo-express mongo;
 	docker image rm node-api;
 
 ##################
